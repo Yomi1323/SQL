@@ -1,0 +1,26 @@
+CREATE TABLE woof_clothing ( name_id INTEGER primary key , name TEXT , quantity TEXT ,price INTEGER , gender TEXT);
+
+INSERT into woof_clothing values (1, 'tshirts' , 10, 50.50,  'M');
+INSERT into woof_clothing VALUES (2, 'shorts', 15, 12.50, 'M');
+INSERT into woof_clothing VALUES (3, 'tanktops', 12, 9.50, 'M');
+INSERT into woof_clothing VALUES (4, 'boxers', 10, 3.50, 'M');
+INSERT into woof_clothing VALUES (5, 'pants', 20, 15.90, 'M');
+INSERT into woof_clothing VALUES (6, 'pajama', 15, 7.50, 'M');
+INSERT into woof_clothing VALUES (7, 'long_sleeve_shirt', 10, 20.50, 'M');
+INSERT into woof_clothing VALUES (8, 'underwears', 20, 3.50, 'M');
+INSERT into woof_clothing VALUES (9, 'socks', 13, 1.50, 'M');
+INSERT into woof_clothing VALUES (10, 'hats',  11, 0.50, 'M');
+INSERT into woof_clothing VALUES (11, 'shoes', 12, 15.80, 'M');
+INSERT into woof_clothing VALUES (12, 'slippers', 10, 2.50, 'M');
+INSERT into woof_clothing VALUES (13, 'towels', 11, 1.80, 'M');
+INSERT into woof_clothing VALUES (14, 'hanky', 100, .25, 'M');
+INSERT into woof_clothing VALUES (15, 'sunglasses', 5, 3.50, 'M');
+
+--display the database ordered by quantity.
+SELECT * FROM woof_clothing 
+order by quantity desc;
+
+--display the database ordered by price.
+SELECT name , price from woof_clothing 
+order by price asc;
+
