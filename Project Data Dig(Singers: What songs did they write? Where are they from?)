@@ -1,0 +1,74 @@
+I create a database that includes information about singers, their songs, the albums those songs are on, 
+and the record labels that produced those albums.
+I modify the previous SQL code to include a new table for record labels
+
+
+
+CREATE TABLE singers (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    origin TEXT
+);
+
+CREATE TABLE songs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT,
+    singer_id INTEGER,
+    album_id INTEGER,
+    FOREIGN KEY (singer_id) REFERENCES singers(id),
+    FOREIGN KEY (album_id) REFERENCES albums(id)
+);
+
+CREATE TABLE albums (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT,
+    release_year INTEGER,
+    label_id INTEGER,
+    FOREIGN KEY (label_id) REFERENCES record_labels(id)
+);
+
+CREATE TABLE record_labels (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    country TEXT
+);
+
+
+I inserts data for three singers, three record labels, 
+three albums, and four songs, with the singer_id, album_id, 
+and label_id values in the songs and albums tables corresponding to the id values in the singers, record_labels, and albums tables.
+
+
+
+INSERT INTO singers (name, origin) VALUES ('Adele', 'London');
+INSERT INTO singers (name, origin) VALUES ('Beyonce', 'Houston');
+INSERT INTO singers (name, origin) VALUES ('Ed Sheeran', 'Halifax');
+
+INSERT INTO record_labels (name, country) VALUES ('Columbia Records', 'USA');
+INSERT INTO record_labels (name, country) VALUES ('Parkwood Entertainment', 'USA');
+INSERT INTO record_labels (name, country) VALUES ('Atlantic Records', 'USA');
+
+INSERT INTO albums (title, release_year, label_id) VALUES ('21', 2011, 1);
+INSERT INTO albums (title, release_year, label_id) VALUES ('Lemonade', 2016, 2);
+INSERT INTO albums (title, release_year, label_id) VALUES ('÷', 2017, 3);
+
+INSERT INTO songs (title, singer_id, album_id) VALUES ('Hello', 1, 1);
+INSERT INTO songs (title, singer_id, album_id) VALUES ('Rolling in the Deep', 1, 1);
+INSERT INTO songs (title, singer_id, album_id) VALUES ('Crazy in Love', 2, 2);
+INSERT INTO songs (title, singer_id, album_id) VALUES ('Shape of You', 3, 3);
+
+Here I retrieve a list of singers, their songs,
+the albums those songs are on, and the record labels that produced those albums, 
+I use the following SQL code:
+
+
+SELECT singers.name, songs.title, albums.title AS album_title, record_labels.name AS label_name
+FROM singers
+JOIN songs ON singers.id = songs.singer_id
+JOIN albums ON songs.album_id = albums.id
+JOIN record_labels ON albums.label_id = record_labels.id;
+
+
+
+
+
